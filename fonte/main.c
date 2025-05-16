@@ -4,6 +4,7 @@
 #include "livros.h"
 #include "lista.h"
 #include "grafo.h"
+#include "componentes_conexos.h"
 
 //Colocado para debug. A ser removido.
 extern unsigned long qtdTotal;
@@ -42,7 +43,24 @@ int main(int argc, char **argv)
     unsigned **grafoInt = lerArquivo(arq);
     double **grafoDouble = inverterArestas(grafoInt,QTD_PERSONAGENS);
 
+    int numComponentes = contarComponentesConexos(grafoInt, QTD_PERSONAGENS);
+
+    // Calcula o número de arestas
+    int numArestas = 0;
+    for (int i = 0; i < QTD_PERSONAGENS; i++) {
+        for (int j = i; j < QTD_PERSONAGENS; j++) {
+            if (grafoInt[i][j] > 0) {
+                numArestas++;
+            }
+        }
+    }
+
+    // Calcula o Circuit Rank
+    int circuitRank = (numArestas - QTD_PERSONAGENS + numComponentes);
+
     exibirSaida(grafoInt,grafoDouble,livros[num-1].nome,QTD_PERSONAGENS);
+    printf("Número de componentes conexos: %d\n", numComponentes);
+    printf("Circuit Rank: %d\n", circuitRank);
 
     liberarGrafo((void**) grafoInt,QTD_PERSONAGENS);
     liberarGrafo((void**) grafoDouble,QTD_PERSONAGENS);

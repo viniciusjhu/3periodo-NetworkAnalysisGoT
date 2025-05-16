@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "lista.h"
 #include "grafo.h"
+#include "componentes_conexos.h"
 
 #define TAM_BUF 64
 
