@@ -32,4 +32,4 @@ Desenvolvido por:
 - Renan Catini
 - João Antônio Siqueira
 - João Antônio Lassister
-- *Vinícius (Publicador do Repositório)*
+- *Vinícius Ribeiro
